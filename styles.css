@@ -56,6 +56,40 @@
   min-height: 100%;
 }
 
+.c4a-panel,
+.c4a-panel * {
+  box-sizing: border-box;
+}
+
+.c4a-panel button {
+  appearance: none;
+  box-shadow: none;
+  font: inherit;
+  height: auto;
+  margin: 0;
+  min-height: 0;
+  line-height: 1.35;
+  text-transform: none;
+  white-space: normal;
+}
+
+.c4a-panel button:not(.clickable-icon):hover,
+.c4a-panel button:not(.clickable-icon):active {
+  box-shadow: none;
+}
+
+.c4a-panel button.c4a-segment,
+.c4a-panel button.c4a-button,
+.c4a-panel button.c4a-node-row,
+.c4a-panel button.c4a-bar-row,
+.c4a-panel button.c4a-edge-endpoint,
+.c4a-panel button.c4a-tab,
+.c4a-panel button.c4a-compact-row {
+  box-shadow: none;
+  height: auto;
+  min-height: 0;
+}
+
 .theme-dark .c4a-panel {
   --c4a-bg-base: #181818;
   --c4a-bg-surface: #202020;
@@ -354,8 +388,11 @@
   padding-block-end: 10px;
 }
 
-.c4a-compact-list {
+.c4a-compact-list,
+.c4a-bars {
   display: grid;
+  gap: 4px;
+  padding: 4px;
 }
 
 .c4a-compact-row {
@@ -364,16 +401,13 @@
   gap: 10px;
   align-items: center;
   width: 100%;
-  border: 0;
-  border-top: 1px solid var(--c4a-border-default);
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: 6px;
   background: transparent;
   color: var(--c4a-text-secondary);
-  padding: 10px 14px;
+  padding: 10px 12px;
   text-align: start;
-}
-
-.c4a-compact-row:first-child {
-  border-top: 0;
 }
 
 .c4a-compact-row:hover {
@@ -382,7 +416,10 @@
 
 .c4a-compact-title {
   color: var(--c4a-text-primary);
-  overflow-wrap: anywhere;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .c4a-card-header {
@@ -404,26 +441,19 @@
   font-size: var(--font-ui-smaller);
 }
 
-.c4a-bars {
-  display: grid;
-}
-
 .c4a-bar-row {
   display: grid;
-  grid-template-columns: minmax(130px, 0.9fr) minmax(80px, 1fr) minmax(120px, max-content);
-  gap: 10px;
+  grid-template-columns: minmax(140px, 0.75fr) minmax(120px, 1fr) minmax(88px, 0.32fr);
+  gap: 12px;
   align-items: center;
   width: 100%;
-  border: 0;
-  border-top: 1px solid var(--c4a-border-default);
+  min-height: 48px;
+  border: 1px solid transparent;
+  border-radius: 6px;
   background: transparent;
   color: var(--c4a-text-secondary);
-  padding: 10px 14px;
+  padding: 10px 12px;
   text-align: start;
-}
-
-.c4a-bar-row:first-child {
-  border-top: 0;
 }
 
 .c4a-bar-row:hover,
@@ -434,6 +464,7 @@
 .c4a-bar-row.is-active,
 .c4a-node-row.is-active {
   background: var(--c4a-accent-muted);
+  border-color: rgba(239, 111, 46, 0.25);
 }
 
 .c4a-bar-label,
@@ -443,8 +474,17 @@
   overflow-wrap: anywhere;
 }
 
+.c4a-bar-label,
+.c4a-bar-value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .c4a-bar-track,
 .c4a-degree-track {
+  min-width: 0;
   height: 7px;
   border-radius: 999px;
   background: var(--c4a-bg-base);
@@ -462,6 +502,7 @@
   color: var(--c4a-text-muted);
   font-family: var(--font-monospace);
   font-size: 10px;
+  text-align: end;
 }
 
 .c4a-graph-layout {
@@ -479,8 +520,12 @@
 .c4a-node-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) max-content;
+  grid-template-rows: auto 7px;
   gap: 10px;
+  row-gap: 8px;
+  align-items: center;
   width: 100%;
+  min-height: 76px;
   border: 0;
   border-top: 1px solid var(--c4a-border-default);
   background: transparent;
@@ -502,6 +547,7 @@
   color: var(--c4a-text-primary);
   font-size: var(--font-ui-medium);
   font-weight: 500;
+  line-height: 1.25;
   overflow-wrap: anywhere;
 }
 
@@ -510,6 +556,7 @@
   color: var(--c4a-text-muted);
   font-family: var(--font-monospace);
   font-size: 11px;
+  line-height: 1.25;
 }
 
 .c4a-node-meta {
@@ -572,8 +619,8 @@
 
 .c4a-edge-row {
   display: grid;
-  grid-template-columns: max-content minmax(0, 1fr) max-content minmax(0, 1fr);
-  gap: 7px;
+  grid-template-columns: max-content minmax(0, 1fr) 16px minmax(0, 1fr);
+  gap: 8px;
   align-items: center;
   border: 1px solid var(--c4a-border-default);
   border-radius: 8px;
@@ -581,13 +628,20 @@
 }
 
 .c4a-edge-endpoint {
+  display: block;
+  width: 100%;
+  min-width: 0;
   border: 0;
   background: transparent;
   color: var(--c4a-text-secondary);
   font-family: var(--font-monospace);
   font-size: 11px;
+  line-height: 1.35;
   text-align: start;
   padding: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .c4a-edge-endpoint:hover {

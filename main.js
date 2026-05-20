@@ -10927,11 +10927,11 @@ function renderSelectedNode(parent, item, edges, callbacks) {
   for (const edge of edges.slice(0, 40)) {
     const row = edgeList.createDiv({ cls: "c4a-edge-row" });
     row.createSpan({ cls: "c4a-badge c4a-badge-muted", text: edge.type });
-    const from = row.createEl("button", { cls: "c4a-edge-endpoint", text: edge.from });
+    const from = row.createEl("button", { cls: "c4a-edge-endpoint", text: edge.from, attr: { title: edge.from } });
     from.type = "button";
     from.addEventListener("click", () => callbacks.openNodeBySlug(edge.from));
     row.createSpan({ cls: "c4a-edge-arrow", text: "->" });
-    const to = row.createEl("button", { cls: "c4a-edge-endpoint", text: edge.to });
+    const to = row.createEl("button", { cls: "c4a-edge-endpoint", text: edge.to, attr: { title: edge.to } });
     to.type = "button";
     to.addEventListener("click", () => callbacks.openNodeBySlug(edge.to));
   }
