@@ -15,7 +15,7 @@ C4A Render 是 [C4A Context](https://github.com/context4ai/context) 的 Obsidian
 插件会渲染：
 
 - 知识 Markdown 中的 Section 元数据标签：类型、版本范围、状态、溯源引用、关系等。
-- Obsidian 命令面板中的 C4A 入口：status、graph、verify、as-of、预览链接样式等。
+- Obsidian 命令面板中的 C4A Workspace 工作台：总览、节点浏览、Force 图、问题检查、as-of、预览链接样式等。
 
 当前版本不会额外增加左侧 ribbon 图标或独立工具栏按钮；主要可见增强会直接出现在生成后的知识 Markdown 文件里。
 
@@ -48,13 +48,9 @@ C4A Render 是 [C4A Context](https://github.com/context4ai/context) 的 Obsidian
 2. 打开生成后的知识 Markdown 文件。
 3. 将 Markdown 切到阅读视图或预览模式。
 4. C4A Render 会自动为 C4A section 增加小标签，例如 `spec`、版本范围、`source_ref`、状态、关系等。
-5. 按 `Cmd+P`（macOS）或 `Ctrl+P`（Windows/Linux）打开 Obsidian 命令面板，输入 `C4A`，可以看到插件命令：
-   - `C4A: Show status`
-   - `C4A: Show graph`
-   - `C4A: Show verify`
-   - `C4A: Set --as-of`
-   - `C4A: Clear --as-of`
-   - `C4A: Toggle preview link style`
+5. 按 `Cmd+P`（macOS）或 `Ctrl+P`（Windows/Linux）打开 Obsidian 命令面板，输入 `C4A`，运行 `C4A: 查看工作区`。
+
+C4A Workspace 会打开一个统一工作台。你可以在里面看到工作区总览、版本视图设置、节点和关系筛选、Force 关系图、渲染问题检查；点击节点会打开对应知识文件。
 
 如果 C4A 面板找不到工作区，它会显示探测到的状态和预期目录结构，不会再只显示空标题。
 
@@ -130,9 +126,3 @@ project-root/
 - Git tag 版本必须与 `manifest.json` 中的版本一致。
 
 本仓库是 Obsidian 插件分发仓库。Release 产物由 C4A 项目生成；插件源码包不发布到 npm。
-
-## 常见问题：.context 在 Obsidian 文件列表中不可见
-
-Obsidian 的默认文件浏览器不显示以 `.` 开头的文件夹，因此 `.context/` 工作区目录不会出现在左侧文件树中。插件自身的面板（Status、Verify、Graph）不依赖文件树可见性，可正常使用。
-
-当前版本建议在 `/context:init` 时选用不带 `.` 前缀的工作区名称（例如 `context/` 代替 `.context/`），该目录在 Obsidian 文件树中默认可见。未来将提供更完善的浏览支持。

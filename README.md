@@ -17,7 +17,7 @@ Install C4A Render when you already have, or plan to open, a C4A knowledge works
 It renders:
 
 - Section metadata chips in rendered Markdown: kind, version range, status, source reference, and relations.
-- C4A command palette entries for status, graph, verify, as-of, and preview-link settings.
+- A C4A Workspace command palette workbench for overview, node exploration, force graph, issue checks, as-of, and preview-link settings.
 
 The current release does not add a separate ribbon icon or toolbar button. The main visible enhancement appears directly on generated knowledge Markdown files.
 
@@ -50,13 +50,9 @@ The current release does not add a separate ribbon icon or toolbar button. The m
 2. Open a generated knowledge Markdown file.
 3. Switch the Markdown file to Reading view or preview mode.
 4. C4A Render automatically adds small chips for C4A section metadata, such as `spec`, version range, `source_ref`, status, and relations.
-5. Open the Obsidian command palette with `Cmd+P` on macOS or `Ctrl+P` on Windows/Linux, then type `C4A` to see plugin commands:
-   - `C4A: Show status`
-   - `C4A: Show graph`
-   - `C4A: Show verify`
-   - `C4A: Set --as-of`
-   - `C4A: Clear --as-of`
-   - `C4A: Toggle preview link style`
+5. Open the Obsidian command palette with `Cmd+P` on macOS or `Ctrl+P` on Windows/Linux, type `C4A`, then run `C4A: 查看工作区`.
+
+C4A Workspace opens one integrated workbench. It shows workspace overview, version-view settings, node and relation filters, a force-directed graph, and render issue checks. Clicking a node opens its knowledge file.
 
 If a C4A panel cannot find a workspace, it will show the detected state and the expected layout instead of staying blank.
 
@@ -132,9 +128,3 @@ If your OS file picker hides `.context/`, show hidden files first. On macOS, pre
 - The tag version must match the `manifest.json` version.
 
 This repository is the Obsidian distribution repository for the plugin. Release assets are generated from the C4A project; the source package is not published to npm.
-
-## FAQ: .context not visible in the Obsidian file explorer
-
-Obsidian's default file explorer does not display dot-prefixed folders, so the `.context/` workspace directory won't appear in the file tree. The plugin's own panels (Status, Verify, Graph) do not rely on file tree visibility and work normally.
-
-In the current release, use a non-dot-prefixed workspace name at init time (for example `context/` instead of `.context/`). The directory then appears in the Obsidian file tree by default. Improved in-vault browsing support is planned for a future update.
