@@ -1,0 +1,59 @@
+.c4a-chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-block: 4px;
+  color: var(--text-muted);
+}
+
+.c4a-chip {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: 6px;
+  padding: 1px 6px;
+  background: var(--background-secondary);
+  color: var(--text-normal);
+  font-size: var(--font-ui-smaller);
+}
+
+.c4a-chip-source {
+  color: var(--text-accent);
+}
+
+.c4a-dim {
+  opacity: 0.35;
+}
+
+.c4a-collapse {
+  display: none;
+}
+
+.c4a-strikethrough {
+  opacity: 0.45;
+  text-decoration: line-through;
+}
+
+.c4a-panel {
+  color: var(--text-normal);
+  background: var(--background-primary);
+  padding: 8px;
+}
+
+.c4a-panel-heading {
+  font-size: var(--font-ui-medium);
+  font-weight: 600;
+  color: var(--text-normal);
+}
+
+.c4a-issue {
+  border-block-start: 1px solid var(--background-modifier-border);
+  padding-block: 6px;
+}
+
+.c4a-graph-node {
+  fill: var(--interactive-accent);
+  stroke: var(--background-modifier-border);
+}
+
+.c4a-graph-edge {
+  stroke: var(--text-faint);
+}

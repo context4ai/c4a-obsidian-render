@@ -1,0 +1,10 @@
+{
+  "id": "c4a-render",
+  "name": "C4A Render",
+  "version": "0.5.33-alpha.5",
+  "minAppVersion": "1.5.0",
+  "description": "Render C4A section metadata, source evidence, version views, graph, status, and verify diagnostics.",
+  "author": "Context4AI",
+  "authorUrl": "https://github.com/context4ai",
+  "isDesktopOnly": false
+}
