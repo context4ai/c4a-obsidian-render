@@ -7114,6 +7114,11 @@ function packageSlugForNodeSlug(slug) {
   if (slug.startsWith("external:")) return "external";
   return slug.split("/")[0] ?? slug;
 }
+function displaySlugInPackageContext(slug, packageSlug) {
+  if (packageSlug === "all" || packageSlug === "external" || slug === packageSlug) return slug;
+  const prefix = `${packageSlug}/`;
+  return slug.startsWith(prefix) ? slug.slice(prefix.length) : slug;
+}
 function kindForGraphNode(node) {
   return node.symbolKind ?? node.type ?? "node";
 }
@@ -10927,11 +10932,19 @@ function renderSelectedNode(parent, item, edges, callbacks) {
   for (const edge of edges.slice(0, 40)) {
     const row = edgeList.createDiv({ cls: "c4a-edge-row" });
     row.createSpan({ cls: "c4a-badge c4a-badge-muted", text: edge.type });
-    const from = row.createEl("button", { cls: "c4a-edge-endpoint", text: edge.from, attr: { title: edge.from } });
+    const from = row.createEl("button", {
+      cls: "c4a-edge-endpoint",
+      text: displaySlugInPackageContext(edge.from, item.packageSlug),
+      attr: { title: edge.from }
+    });
     from.type = "button";
     from.addEventListener("click", () => callbacks.openNodeBySlug(edge.from));
     row.createSpan({ cls: "c4a-edge-arrow", text: "->" });
-    const to = row.createEl("button", { cls: "c4a-edge-endpoint", text: edge.to, attr: { title: edge.to } });
+    const to = row.createEl("button", {
+      cls: "c4a-edge-endpoint",
+      text: displaySlugInPackageContext(edge.to, item.packageSlug),
+      attr: { title: edge.to }
+    });
     to.type = "button";
     to.addEventListener("click", () => callbacks.openNodeBySlug(edge.to));
   }

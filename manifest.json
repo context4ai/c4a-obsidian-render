@@ -1,7 +1,7 @@
 {
   "id": "c4a-render",
   "name": "C4A Render",
-  "version": "0.5.35-alpha.2",
+  "version": "0.5.35-alpha.3",
   "minAppVersion": "1.5.0",
   "description": "Render C4A section metadata, source evidence, version views, and workspace visualization.",
   "author": "Context4AI",
