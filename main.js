@@ -6804,6 +6804,8 @@ function stringify3(value, replacer, options) {
 var browser_default = dist_exports;
 
 // ../context-render-shared/src/graph.ts
+var GRAPH_EDGES_SCHEMA_VERSION = "knowledge.graph-edges.v2";
+var EXTERNAL_DEPS_SCHEMA_VERSION = "knowledge.external-deps.v2";
 function isRecord(value) {
   return typeof value === "object" && value !== null && !Array.isArray(value);
 }
@@ -6814,6 +6816,17 @@ function parseGraphEdgeYamlText(text, sourcePath = "_edges.yaml") {
   const parsed = browser_default.parse(text);
   const issues = [];
   if (!isRecord(parsed)) return { edges: [], issues };
+  if (parsed.schema_version !== GRAPH_EDGES_SCHEMA_VERSION) {
+    return {
+      edges: [],
+      issues: [{
+        severity: "error",
+        code: "edge-schema-invalid",
+        message: `edge file schema_version must be ${GRAPH_EDGES_SCHEMA_VERSION}`,
+        path: sourcePath
+      }]
+    };
+  }
   const rawEdges = Array.isArray(parsed.edges) ? parsed.edges : [];
   const edges = [];
   for (const raw of rawEdges) {
@@ -6840,6 +6853,17 @@ function parseExternalYamlText(text, sourcePath = "_external.yaml") {
   const parsed = browser_default.parse(text);
   const issues = [];
   if (!isRecord(parsed)) return { externals: [], issues };
+  if (parsed.schema_version !== EXTERNAL_DEPS_SCHEMA_VERSION) {
+    return {
+      externals: [],
+      issues: [{
+        severity: "error",
+        code: "external-schema-invalid",
+        message: `external file schema_version must be ${EXTERNAL_DEPS_SCHEMA_VERSION}`,
+        path: sourcePath
+      }]
+    };
+  }
   const rawExternals = Array.isArray(parsed.externals) ? parsed.externals : [];
   const externals = [];
   for (const raw of rawExternals) {
